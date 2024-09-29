@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Propose</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Loved+by+the+King&display=swap" rel="stylesheet">
+        <link href="https://www.freeiconspng.com/thumbs/heart-icon/valentine-heart-icon-6.png" width="32x32" rel="icon" type="img/png"  />
+        <style class="text/css">
+
+            *{
+                user-select: none;
+            }
+
+            body{
+                font-family: "Roboto Mono", monospace;
+                font-optical-sizing: auto;
+                font-weight: 40px;
+                font-style: normal;
+                height: 100vh;
+                background-color: #f4f4f4;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                padding: 0;
+                margin: 0;
+
+                /* overflow: hidden; */
+            }
+
+            .container{
+                width: 600px;
+                /* background-color: steelblue; */
+
+                display: grid;
+            }
+
+            .container h3{
+                font-size: 50px;
+                letter-spacing: 2px;
+                background: linear-gradient(45deg,red,tomato);
+                color: transparent;
+                background-clip: text;
+                text-align: center;
+            }
+
+            .container .gif1{
+                justify-self: center;
+            }
+
+            .btn-container{
+                margin-top: 50px;
+
+                position: relative;
+            }
+
+            .btn{
+                width: 200px;
+                background-color: #000;
+                color: #fff;
+                font-size: 20px;
+                letter-spacing: 2px;
+                border-radius: 40px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                padding: 40px 50px;
+
+                position: relative;
+
+                overflow: hidden;
+            }
+
+            .btn .waveone,.btn .wavetwo{
+                width: 200px;
+                height: 200px;
+                background-color: blue;
+
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                transition: all 0.5s ease-in;
+            }
+
+            .btn .waveone::before,.btn .waveone::after,.btn .wavetwo::before,.btn .wavetwo::after{
+                content: "";
+                width: 200%;
+                height: 200%;
+                
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .btn .waveone::before,.btn .wavetwo::before{
+                background-color: rgba(0,0,0,1);
+                border-radius: 45%;
+
+                animation: rotate 5s infinite linear;
+            }
+
+            .btn .waveone::after,.btn .wavetwo::after{
+                background-color: rgba(0,0,0,0.1);
+                border-radius: 40%;
+
+                animation: rotate 5s infinite linear;
+            }
+
+            @keyframes rotate{
+                from{
+                    transform: translate(-25%,-90%) rotate(0grad);
+                }
+
+                to{
+                    transform: translate(-25%,-90%) rotate(400grad);
+                }
+            }
+
+            .btn span{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+
+                transform: translate(-50%,-50%);
+                z-index: 1;
+            }
+
+            .btn:hover .waveone,.btn:hover .wavetwo{
+                top: -30%;
+            }
+
+            .randombtn{
+                position: absolute;
+                left: 67%;
+                top: 0;
+            }
+
+            @media(max-width:630px){
+
+                .container{
+                    width: 400px;
+                }
+
+                .container h3{
+                    font-size: 30px;
+                }
+
+                .container .gif1{
+                    width: 200px;
+                    height: 200px;
+                }
+
+                .btn{
+                    width: 100px;
+                    font-size: 18px;
+                    padding: 20px 25px;
+                }
+
+                .btn .waveone,.btn .wavetwo{
+                    width: 100px;
+                    height: 100px;
+                }
+
+            }
+
+            
+            
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+
+            <h3>Do you love me?</h3>
+            <img src="https://media.tenor.com/OrZpVI2IS94AAAAi/dog-sticker-line-sticker.gif" alt="gif" class="gif1" />
+            <div class="btn-container">
+                <button type="button" id="yesbtn" class="btn">
+                    <span>Yes</span>
+                    <em class="waveone"></em>
+                </button>
+                <div class="randombtn">
+                    <button type="button" id="nobtn" class="btn">
+                        <span>No</span>
+                        <em class="wavetwo"></em>
+                    </button>
+                </div>
+            </div>    
+
+        </div>        
+
+        <script type="text/javascript">
+
+            const getyesbtn = document.getElementById('yesbtn');
+            const getnobtn = document.getElementById('nobtn');
+            const getrandombtn = document.querySelector('.randombtn');
+            const getbtncontainer = document.querySelector('.btn-container');
+            const getheader = document.querySelector('h3');
+            const getgif = document.querySelector('.gif1');
+
+            getnobtn.addEventListener('mouseover',()=>{
+
+                const getboundrect = getnobtn.getBoundingClientRect();
+                
+                const maxwidth = window.innerWidth - getboundrect.width;
+                const maxheight = window.innerHeight - getboundrect.height;
+
+                const rdmwidth = Math.floor(Math.random() * maxwidth);
+                const rdmheight = Math.floor(Math.random() * maxheight);
+
+                getbtncontainer.style.position = "static";
+                getrandombtn.style.left = `${rdmwidth}px`;
+                getrandombtn.style.top =  `${rdmheight}px`;
+                console.log(rdmwidth,rdmheight);
+
+            });
+
+            getyesbtn.addEventListener('click',()=>{
+                getheader.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;'><h3>I love you too!</h3><img src='https://em-content.zobj.net/source/animated-noto-color-emoji/356/face-blowing-a-kiss_1f618.gif' style='width:50px;height:50x' /></div>";
+            
+                getgif.src = "https://media4.giphy.com/media/YKUvclrGYmDKXwtphf/giphy.gif?cid=6c09b952x4q3szgpvy2hnxvauaey5acni2a8nibw7ofjp5kn&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s";
+            
+                getbtncontainer.style.display = "none";
+
+            }); 
+
+        </script>
+    </body>
+</html>
